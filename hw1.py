@@ -78,4 +78,25 @@ def f_diferenciaListas (lista1, lista2):
 #####################################################################
 
 #EJERCICIO 3 B
+#EJERCICIO 4
+def f_mostrarPrimos (max):
+	primos = []
+	sumaDigitosPrimos = []
+	for i in range (1, max):
+		divisibles = 0
+		divisor = 1
+		while divisor <= i:
+			if i % divisor == 0:
+				divisibles += 1
+			divisor += 1
+		if divisibles == 2:
+			primos.append (i)
+			digitosSuma = sum(int(d) for d in str(i)) #es un generador que convierte cada caracter en un número entero, es decir, cada dígito del número
+			if digitosSuma in primos:
+				sumaDigitosPrimos.append(i)
+	for i in range (len(primos)):
+		print("-->",primos[i] )
+	print(*sumaDigitosPrimos, sep =",")
+
+#f_mostrarPrimos(100)
 
