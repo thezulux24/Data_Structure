@@ -107,7 +107,7 @@ def f_mostrarPrimos (max):
 			if digitosSuma in primos:
 				sumaDigitosPrimos.append(i)
 			print("-->", i )
-	print(*sumaDigitosPrimos, sep =",")
+	print(*sumaDigitosPrimos, sep =",") #en este caso no uso el método .join porque tengo la lista de enterosenteros
 
 #f_mostrarPrimos(100)
 
