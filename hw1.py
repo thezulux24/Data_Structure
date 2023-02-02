@@ -78,6 +78,18 @@ def f_diferenciaListas (lista1, lista2):
 #####################################################################
 
 #EJERCICIO 3 B
+def f_lecturaImpresion():
+	numeroEjecuciones = int(input())
+	resultados = list()
+	for i in range (numeroEjecuciones):
+		listaA = input().split()
+		listaB = input().split()
+		resultado = f_diferenciaListas(listaA[1::],listaB[1::])
+		resultados.append(", ".join(resultado))
+	print("\n".join(resultados))
+#f_lecturaImpresion()
+####################################################
+###################################################
 #EJERCICIO 4
 def f_mostrarPrimos (max):
 	primos = []
@@ -94,8 +106,7 @@ def f_mostrarPrimos (max):
 			digitosSuma = sum(int(d) for d in str(i)) #es un generador que convierte cada caracter en un número entero, es decir, cada dígito del número
 			if digitosSuma in primos:
 				sumaDigitosPrimos.append(i)
-	for i in range (len(primos)):
-		print("-->",primos[i] )
+			print("-->", i )
 	print(*sumaDigitosPrimos, sep =",")
 
 #f_mostrarPrimos(100)
