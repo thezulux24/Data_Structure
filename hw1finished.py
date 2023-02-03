@@ -46,7 +46,7 @@ def esCapicua(lista):
 	for i in range (len(lista)):
 		#si el valor de la ubicacion en la lista es diferente a su valor leido alrevez, retornará false
 		if lista[i] != lista [-i-1]: #simplemente se hace una leida de lista inverza, desde la posicion -1									#que es equivalente a la ultima posicion, la ir restando 1 se retrocedera la posición.
-			resultado= False
+			resultado = False
 	return resultado
 
 #print(esCapicua(listaA))
