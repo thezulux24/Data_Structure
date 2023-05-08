@@ -8,13 +8,18 @@ Cola::Cola(){
 //hasta dejar el vector copia vacio, las implementaciones del vector son O(1) así que no afectan tanto a la complejidad
 Elemento Cola::front(){
   //Elemento ans = vec[0]; 
-  vector<Elemento> temp = vec;
+  vector <Elemento> temp;
   Elemento max = 0;
-  while(!temp.empty()){
-    if (temp[temp.size() - 1] > max ){
-      max = temp[temp.size() - 1];
+  while(!vec.empty()){
+    if (vec[vec.size() - 1] > max ){
+      max = vec[vec.size() - 1];
     }
-   temp.pop_back();
+   temp.insert(temp.begin(), vec[vec.size() - 1]);
+   vec.pop_back();
+  }
+  while(!temp.empty()){
+    vec.insert(vec.begin(), temp[temp.size()-1]);
+    temp.pop_back();
   }
    return max;
 }
