@@ -24,19 +24,20 @@ void Cola::enqueue(Elemento e){
   vec.insert(vec.begin(), e);
 }
 
+//la complejidad es O(n) donde n es el tamaño del vector, es muy parecida a la implementación anterior, solo que guardo el indice del maximo y después lo borro
 void Cola::deque(){
   //vec.erase(vec.begin());
   vector<Elemento> temp = vec;
   Elemento index = 0;
   Elemento max = 0;
-  int i = 0;
+  int i = temp.size()-1;
   while(!temp.empty()){
     if (temp[temp.size() - 1] > max){
       max = temp[temp.size() - 1];
       index = i;
     }
    temp.pop_back();
-   i++;
+   i = temp.size()-1;
   }
   vec.erase(vec.begin() + index);
 }
