@@ -38,3 +38,15 @@ stack<int> filtrarNParesCola(queue<int> col, int N) {
 
     return ans;
 }
+
+
+map<char, list<int> > obtenerPosicionesOcurrencias(string& cad) {
+    map<char, list<int> > mapa;
+
+    for (int i = 0; i < cad.length(); i++) {
+        char c = cad[i];
+        mapa[c].push_back(i);
+    }
+
+    return mapa;
+}
