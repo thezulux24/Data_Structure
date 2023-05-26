@@ -1,5 +1,6 @@
 #include <iostream>
 #include <queue>
+#include <stack>
 
 using namespace std;
 // paso sin referencia para que no me altere la cola original
@@ -21,4 +22,19 @@ bool flag = true;
         }
     }
      return ans;
+}
+stack<int> filtrarNParesCola(queue<int> col, int N) {
+    stack<int> ans;
+
+    while (!col.empty() && N > 0) {
+        int x = col.front();
+        col.pop();
+
+        if (x % 2 == 0) {
+            ans.push(x);
+            N--;
+        }
+    }
+
+    return ans;
 }
