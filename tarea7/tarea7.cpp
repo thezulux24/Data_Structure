@@ -1,6 +1,10 @@
 #include <iostream>
 #include <queue>
 #include <stack>
+#include <map>
+#include <string>
+#include <map>
+#include <list>
 
 using namespace std;
 // paso sin referencia para que no me altere la cola original
@@ -49,4 +53,27 @@ map<char, list<int> > obtenerPosicionesOcurrencias(string& cad) {
     }
 
     return mapa;
+}
+
+void eliminarPosicionesPila(std::stack<int>& pil, std::list<int>& l) {
+    std::stack <int> auxiliar;
+    int posicion = 0;
+    int contador = 0;
+
+    while (!pil.empty()) {
+        if (contador == l.front()) {
+            pil.pop();
+            l.pop_front();
+        } else {
+            auxiliar.push(pil.top());
+            pil.pop();
+        }
+
+        contador++;
+    }
+
+    while (!auxiliar.empty()) {
+        pil.push(auxiliar.top());
+        auxiliar.pop();
+    }
 }
