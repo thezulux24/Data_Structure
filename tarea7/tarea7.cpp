@@ -114,3 +114,7 @@ int obtenerMenorCosto(list<int> &l) {
 
     return ans;
 }
+void ordenarConMonticulo(vector<int>& vec) {
+  make_heap(vec.begin(), vec.end());
+  sort_heap(vec.begin(), vec.end());
+}
