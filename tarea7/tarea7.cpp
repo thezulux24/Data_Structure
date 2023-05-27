@@ -55,8 +55,8 @@ map<char, list<int> > obtenerPosicionesOcurrencias(string& cad) {
     return mapa;
 }
 
-void eliminarPosicionesPila(std::stack<int>& pil, std::list<int>& l) {
-    std::stack <int> auxiliar;
+void eliminarPosicionesPila(stack<int>& pil, list<int>& l) {
+    stack <int> auxiliar;
     int posicion = 0;
     int contador = 0;
 
