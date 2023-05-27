@@ -99,3 +99,18 @@ bool verificarOrdenadoCola(queue<int> &cola) {
 
     return ordenAscendente || ordenDescendente;
 }
+
+int obtenerMenorCosto(list<int> &l) {
+    int ans = 0;
+    list<int>::iterator it = l.begin();
+    int acum = *it;
+    ++it;
+
+    while (it != l.end()) {
+        acum += *it;
+        ans += acum;
+        ++it;
+    }
+
+    return ans;
+}
