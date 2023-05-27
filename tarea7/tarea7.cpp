@@ -77,3 +77,25 @@ void eliminarPosicionesPila(std::stack<int>& pil, std::list<int>& l) {
         auxiliar.pop();
     }
 }
+
+bool verificarOrdenadoCola(queue<int> &cola) {
+    int valorAnterior = cola.front();
+    queue<int> Aux = cola;
+    bool ordenAscendente = true;
+    bool ordenDescendente = true;
+    while (!Aux.empty()) {
+        int valorActual = Aux.front();
+        Aux.pop();
+
+        if (valorActual < valorAnterior) {
+            ordenAscendente = false;
+        }
+        if (valorActual > valorAnterior) {
+            ordenDescendente = false;
+        }
+
+        valorAnterior = valorActual;
+    }
+
+    return ordenAscendente || ordenDescendente;
+}
