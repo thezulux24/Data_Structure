@@ -40,7 +40,14 @@ void BigInteger::add(BigInteger& big) {
     }
     else{
         BigInteger temp = big;
-        substract(temp);
+        if (negativo && !big.negativo){
+            negativo = !negativo;
+            substract(temp);
+            negativo = !negativo;
+        }
+        else{
+            substract(temp);
+        }
     }
 }
 
@@ -48,9 +55,24 @@ void BigInteger::substract(BigInteger& big) {
     
     if (negativo != big.negativo) {
         BigInteger temp(big);
-        add(temp);
+        if (!negativo && big.negativo ){
+            temp.negativo = false;
+            add(temp);
+        
+        }
+        else{
+            add(temp);
+        }
         return;
     }
+    if (negativo && big.negativo){
+        BigInteger temp(big);
+        temp.negativo = false;
+        add(temp);
+        negativo = true;
+        return;
+        }
+
 
     bool signo = false;
     if (operator<(big)) {
@@ -311,6 +333,7 @@ BigInteger BigInteger::multiplicarListaValores(list<BigInteger>& lista) {
     
     return producto;
 }
+
 
 
 
