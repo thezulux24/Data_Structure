@@ -249,6 +249,8 @@ BigInteger BigInteger::operator%(BigInteger& big) {
 //analizadoras
 bool BigInteger::operator==( BigInteger& big){
     bool ans = true;
+    if(negativo != big.negativo)
+        ans = false;
     if (vec.size() != big.vec.size()&& ans)
         ans = false;
     for (int i = vec.size() - 1 && ans; i >= 0; i--) {
@@ -270,15 +272,29 @@ bool BigInteger::operator<(BigInteger& big) {
         ans = false; 
         flag = false;
     }
-    if (vec.size() < big.vec.size() && flag) {
-        ans = true;
-        flag = false;
+    if(!negativo && !big.negativo &&flag ){
+        if (vec.size() < big.vec.size() && flag) {
+            ans = true;
+            flag = false;
+        }
+        if (vec.size() > big.vec.size() && flag) {
+            ans = false;
+            flag = false;
+        }
+    
     }
-    if (vec.size() > big.vec.size() && flag) {
-        ans = false;
-        flag = false;
+    if(negativo && big.negativo && flag ){
+        if (vec.size() < big.vec.size() && flag) {
+            ans = false;
+            flag = false;
+        }
+        if (vec.size() > big.vec.size() && flag) {
+            ans = true;
+            flag = false;
+        }
+    
     }
-    if (negativo && big.negativo){
+    else if (negativo && big.negativo){
         for (int i = vec.size() - 1 ; i >= 0 && flag; i--) {
             if (vec[i] < big.vec[i]) {
                 ans = false;
@@ -333,7 +349,6 @@ BigInteger BigInteger::multiplicarListaValores(list<BigInteger>& lista) {
     
     return producto;
 }
-
 
 
 
