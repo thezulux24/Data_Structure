@@ -9,9 +9,9 @@ BigInteger::BigInteger() {
     vec.push_back(0);
 }
 /*
-ENTRADA:
+ENTRADA: una cadena de texto
 SALIDA: Ninguna
-DESCRIPCION:
+DESCRIPCION: Crea el objeto Biginteger con un vector interno de enteros con los valores de la cadena de texto
 */
 BigInteger::BigInteger(const string e){
 {
@@ -29,9 +29,9 @@ BigInteger::BigInteger(const string e){
     }
 }
 /*
-ENTRADA
+ENTRADA: un objeto BigInteger
 SALIDA
-DESCRIPCION:
+DESCRIPCION: Realiza una copia de objeto BigInteger passado por referencia s
 */
 BigInteger::BigInteger(const BigInteger& other) {
     vec = other.vec;
