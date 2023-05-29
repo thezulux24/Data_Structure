@@ -1,9 +1,18 @@
 #include "big.h"
 
+/*
+ENTRADA: Ninguna
+SALIDA:
+DESCRIPCION:
+*/
 BigInteger::BigInteger() {
     vec.push_back(0);
 }
-
+/*
+ENTRADA:
+SALIDA: Ninguna
+DESCRIPCION:
+*/
 BigInteger::BigInteger(const string e){
 {
         if (e[0] == '-') {
@@ -19,11 +28,22 @@ BigInteger::BigInteger(const string e){
         }
     }
 }
-
+/*
+ENTRADA
+SALIDA
+DESCRIPCION:
+*/
 BigInteger::BigInteger(const BigInteger& other) {
     vec = other.vec;
 }
 
+
+/*
+función add
+ENTRADA: un objeto BigInteger pasado por referencia
+SALIDA: Ninguna
+DESCRIPCION:Esta función suma el valor representado por el objeto BigInteger pasado como parámetro al objeto actual
+*/
 void BigInteger::add(BigInteger& big) {
     int aux = 0;
     if (negativo == big.negativo){
@@ -50,7 +70,12 @@ void BigInteger::add(BigInteger& big) {
         }
     }
 }
-
+/*
+función substract
+ENTRADA: un objeto BigInteger pasado por referencia
+SALIDA: Ninguna
+DESCRIPCION:Esta función resta el valor representado por el objeto BigInteger pasado como parámetro al objeto actual
+*/
 void BigInteger::substract(BigInteger& big) {
     
     if (negativo != big.negativo) {
@@ -102,6 +127,13 @@ void BigInteger::substract(BigInteger& big) {
         negativo = signo;
     }
 }
+
+/*
+función Product
+ENTRADA: un objeto BigInteger pasado por referencia
+SALIDA: Ninguna
+DESCRIPCION:Esta función  multiplica el valor representado por el objeto BigInteger pasado como parámetro al objeto actual
+*/
 void BigInteger::product(BigInteger& big) {
     int n = vec.size();
     int m = big.vec.size();
@@ -128,7 +160,12 @@ void BigInteger::product(BigInteger& big) {
     else    
         negativo = true;
 }
-
+/*
+función pow
+ENTRADA: un elemento entero 'e'
+SALIDA: Ninguna
+DESCRIPCION:Esta función  calcula la potencia 'e'del valor representado por el objeto actual BigInteger
+*/
 void BigInteger::pow(int e) {
     bool par = (e % 2 == 0);
     if (e == 0) {
@@ -149,7 +186,12 @@ void BigInteger::pow(int e) {
     }
 
 }
-
+/*
+función quotient
+ENTRADA: un objeto BigInteger pasado por referencia
+SALIDA: 
+DESCRIPCION:Esta función divide el valor representado por el objeto BigInteger pasado como parámetro al objeto actual
+*/
 void BigInteger::quotient(BigInteger& big) {
     BigInteger cero("0");
     BigInteger uno("1");
@@ -166,7 +208,12 @@ void BigInteger::quotient(BigInteger& big) {
         vec = ans.vec;
     }
 }
-
+/*
+función remainder
+ENTRADA: un objeto BigInteger pasado por referencia
+SALIDA: 
+DESCRIPCION:Esta función calcula el residuo de la division de el valor representado por el objeto BigInteger pasado como parámetro al objeto actual
+*/
 void BigInteger::remainder(BigInteger& big) {
     BigInteger cero("0");
     if (big == cero) {
@@ -179,7 +226,12 @@ void BigInteger::remainder(BigInteger& big) {
         vec = dividido.vec;
     }
 }
-
+/*
+función toString
+ENTRADA: Ninguna
+SALIDA: Una cadena de texto que representa al objeto BigInteger
+DESCRIPCION:Esta función transforma el objeto BigInteger actual a una cadena de texto 
+*/
 string BigInteger::toString() {
     string ans;
     if (negativo)
@@ -189,7 +241,12 @@ string BigInteger::toString() {
     }
     return ans;
 }
-
+/*
+Función operator+
+ENTRADA: un objeto BigInteger pasado por referencia
+SALIDA: un objeto BigInteger que representa la suma del objeto BigInteger actual y 'big'.
+DESCRIPCIÓN: Esta función realiza la suma del valor representado por el objeto BigInteger pasado como parámetro ('big') al objeto BigInteger actual.
+*/
 BigInteger BigInteger::operator+(BigInteger& big) {
     BigInteger ans(*this);
     ans.negativo = negativo;
@@ -197,6 +254,12 @@ BigInteger BigInteger::operator+(BigInteger& big) {
     return ans;
 }
 
+/*
+Función operator-
+ENTRADA: un objeto BigInteger pasado por referencia
+SALIDA: un objeto BigInteger que representa la resta del objeto BigInteger actual y 'big'.
+DESCRIPCIÓN: Esta función realiza la resta del valor representado por el objeto BigInteger pasado como parámetro ('big') al objeto BigInteger actual.
+*/
 BigInteger BigInteger::operator-(BigInteger& big){
     BigInteger ans(*this);
     ans.negativo = negativo;
@@ -204,20 +267,36 @@ BigInteger BigInteger::operator-(BigInteger& big){
     return ans;
 
 }
-
+/*
+Función operator*
+ENTRADA: un objeto BigInteger pasado por referencia
+SALIDA: un objeto BigInteger que representa el producto del objeto BigInteger actual y 'big'.
+DESCRIPCIÓN: Esta función realiza la multiplicacion del valor representado por el objeto BigInteger pasado como parámetro ('big') al objeto BigInteger actual.
+*/
 BigInteger BigInteger::operator*(BigInteger& big) {
     BigInteger ans(*this);
     ans.negativo = negativo;
     ans.product(big);
     return ans;
 }
-
+/*
+Función operator/
+ENTRADA: un objeto BigInteger pasado por referencia
+SALIDA: un objeto BigInteger que representa la division del objeto BigInteger actual y 'big'.
+DESCRIPCIÓN: Esta función realiza la division del valor representado por el objeto BigInteger pasado como parámetro ('big') al objeto BigInteger actual.
+*/
 BigInteger BigInteger::operator/(BigInteger& big) {
     BigInteger ans(*this);
     ans.negativo = negativo;
     ans.quotient(big);
     return ans;
 }
+/*
+Función operator%
+ENTRADA: un objeto BigInteger pasado por referencia
+SALIDA: un objeto BigInteger que representa el residuo del objeto BigInteger actual y 'big'.
+DESCRIPCIÓN: Esta función calcula el residuo del valor representado por el objeto BigInteger pasado como parámetro ('big') al objeto BigInteger actual.
+*/
 
 BigInteger BigInteger::operator%(BigInteger& big) {
     BigInteger ans(*this);
@@ -227,6 +306,13 @@ BigInteger BigInteger::operator%(BigInteger& big) {
 }
 
 //analizadoras
+
+/*
+función operator==
+ENTRADA: un objeto BigInteger pasado por referencia
+SALIDA:  un valor booleano que indica si el objeto BigInteger actual es igual al objeto 'big'
+DESCRIPCION: Esta función compara si el objeto BigInteger actual es igual al objeto 'big'.
+*/
 bool BigInteger::operator==( BigInteger& big){
     bool ans = true;
     if(negativo != big.negativo)
@@ -239,7 +325,12 @@ bool BigInteger::operator==( BigInteger& big){
     }
     return ans;
 }
-
+/*
+función operator<
+ENTRADA: un objeto BigInteger pasado por referencia
+SALIDA:  un valor booleano que indica si el objeto BigInteger actual es menor al objeto 'big'
+DESCRIPCION: Esta función compara si el objeto BigInteger actual es menor al objeto 'big'.
+*/
 bool BigInteger::operator<(BigInteger& big) {
 
     bool ans;
@@ -306,11 +397,22 @@ bool BigInteger::operator<(BigInteger& big) {
     }
     return ans;
 }
+/*
+función operator<=
+ENTRADA: un objeto BigInteger pasado por referencia
+SALIDA:  un valor booleano que indica si el objeto BigInteger actual es menor o igual al objeto 'big'
+DESCRIPCION: Esta función compara si el objeto BigInteger actual es menor o igual al objeto 'big'.
+*/
 bool BigInteger::operator<=(BigInteger& big) {
     return operator<(big) || operator==(big);
 }
 
-
+/*
+función add
+ENTRADA: una lista pasada por referencia
+SALIDA: un objeto que representa la suma de todos los objetos BigInteger en la lista
+DESCRIPCION: Esta función suma todos lo elementos dentro de la lista.
+*/
 BigInteger BigInteger::sumarListaValores(list<BigInteger>& lista) {
     BigInteger suma;
     
@@ -320,7 +422,12 @@ BigInteger BigInteger::sumarListaValores(list<BigInteger>& lista) {
     
     return suma;
 }
-
+/*
+función add
+ENTRADA: una lista pasada por referencia
+SALIDA: un objeto que representa el producto de todos los objetos BigInteger en la lista
+DESCRIPCION: Esta función multiplica todos lo elementos dentro de la lista.
+*/
 BigInteger BigInteger::multiplicarListaValores(list<BigInteger>& lista) {
     BigInteger producto("1");
     for (list<BigInteger>::iterator it = lista.begin(); it != lista.end(); ++it) {
