@@ -63,47 +63,45 @@ void BigInteger::substract(BigInteger& big) {
         else{
             add(temp);
         }
-        return;
     }
     if (negativo && big.negativo){
         BigInteger temp(big);
         temp.negativo = false;
         add(temp);
         negativo = true;
-        return;
         }
 
-
-    bool signo = false;
-    if (operator<(big)) {
-        swap(*this, big);
-        signo = !negativo;
-    }
-
-    int aux = 0;
-    for (int i = 0; i < vec.size(); i++) {
-        int sub = vec[i] - aux;
-        if (i < big.vec.size())
-            sub -= big.vec[i];
-
-        if (sub < 0) {
-            aux = 1;
-            sub += 10;
-        } else {
-            aux = 0;
+    else{
+        bool signo = false;
+        if (operator<(big)) {
+            swap(*this, big);
+            signo = !negativo;
         }
 
-        vec[i] = sub;
-    }
+        int aux = 0;
+        for (int i = 0; i < vec.size(); i++) {
+            int sub = vec[i] - aux;
+            if (i < big.vec.size())
+                sub -= big.vec[i];
 
-    // Eliminar los ceros no significativos
-    while (vec.size() > 1 && vec.back() == 0) {
-        vec.pop_back();
-    }
+            if (sub < 0) {
+                aux = 1;
+                sub += 10;
+            } else {
+                aux = 0;
+            }
 
-    negativo = signo;
+            vec[i] = sub;
+        }
+
+        // Eliminar los ceros no significativos
+        while (vec.size() > 1 && vec.back() == 0) {
+            vec.pop_back();
+        }
+
+        negativo = signo;
+    }
 }
-
 void BigInteger::product(BigInteger& big) {
     int n = vec.size();
     int m = big.vec.size();
@@ -153,50 +151,32 @@ void BigInteger::pow(int e) {
 }
 
 void BigInteger::quotient(BigInteger& big) {
-    bool signo;
     BigInteger cero("0");
     BigInteger uno("1");
 
     if (big == cero) {
     }
     else{
-        if (negativo == big.negativo)
-            signo = false;
-        else
-            signo = true;
-
         BigInteger dividido(*this); 
-        BigInteger ans;
-        big.negativo = false;
-        dividido.negativo = false;
+        BigInteger ans("0");
         while (big <= dividido) {
             dividido.substract(big);
             ans.add(uno);
         }
         vec = ans.vec;
-        negativo = signo;
     }
 }
 
 void BigInteger::remainder(BigInteger& big) {
-    bool signo;
     BigInteger cero("0");
     if (big == cero) {
     }
     else{
-        if (negativo == big.negativo)
-            signo = false;
-        else
-            signo = true;
-
         BigInteger dividido(*this); 
-        big.negativo = false;
-        dividido.negativo = false;
         while (big <= dividido) {
             dividido.substract(big);
         }
         vec = dividido.vec;
-        negativo = signo;
     }
 }
 
